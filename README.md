@@ -27,7 +27,7 @@ Provide script/program that periodically calls rippled’s server_info command a
   
      1. git clone in any folder
      2. Then ./ping-ripple.sh (enter 1 second interval) 
-     3. This will create data.dat file of 30 records  
+     3. This will create data.dat file of 30 records 
      4. Now run ./gnup.gnu (This will plot data.dat in a graph which will be poped up)
      
      
@@ -38,18 +38,18 @@ Provide script/program that periodically calls rippled’s server_info command a
               e.g. server_info method returns "server_state": "full" or respective value in response JSON object.
       
  
-   # How did you decide on polling interval? 
+   # How to decide on polling interval? 
    
    
-   The XRP ledger's technology takes three to six seconds for settlement, near realtime. 
-   Poll interval of 1 second is taken so we can plot the graph in a way that we first see flat line until a new sequence is generated. There will be spike in curve for every new ledger sequence number against the current time. The smaller the flat line the less time it took for the XRP platform to validate the ledger and vice a versa.
+The XRP ledger's technology takes three to six seconds for settlement, near realtime. 
+Poll interval of 1 second is taken so we can plot the graph in a way that we first see flat line until a new sequence is    generated. There will be spike in curve for every new ledger sequence number against the current time. The smaller the flat line the less time it took for the XRP platform to validate the ledger and vice a versa.
    
  If poll interval is taken in mill seconds we get flat line graph as we are taking sample of 30 records only in this demo.
  For this to work we need to increase the span of time to a lot longer (becaue XRP takes min 3-6 sec) so we have enough data to understand the graph. 
  
  So better option was to use 1 sec interval for small span. It also helps as NTP possibly takes few mill seconds to synchronise participating computers in the network.
  
- # What does the result tell us? 
+ # What does the result tell? 
   
   Every 1-4 seconds a new ledger is added. Occassionally it may be slightly higher than 6 seconds for few ledgers in consensus process. So there is clear variation in time between new ledgers. 
   
@@ -57,13 +57,110 @@ Provide script/program that periodically calls rippled’s server_info command a
   # What might explain the variation in time between new ledgers? 
   
 XRP Ledger enables peer-to-peer transaction settlement across a decentralized network of computers which participate in concensus process to validate the group of transactions. 
+
+There could be some variation in time between the ledgers as all peer uses NTP for keeping their clock in sync with UTC and occassionally nodes can be out of sync just slightly and they may cause overlaps in concensus process. 
+
+Also network congetion could play role in delay in voting process. 
+
+
+ #Additional questions : 
+
+1: Enhance the script to calculate the min, max, and average time that it took for a new ledger to be validated during the span of time captured. 
+
+Gnuplot stats can be used to calculate min, max and average. 
+
+
+2: There are some other (better) ways that you could use the rippled API to find how long each ledger took to close/validate. Using the API documentation, find and describe one of these methods (you don’t need to actually implement it).
+
  
-There could be some variation in time between the ledgers due to NTP (Network Time Protocol)as every peer needs to  keep its  clock in sync with UTC and and sometimes these peers can be out of sync slightly & may cause minor delay in concensus. 
-Also network congetion could also contribute to delay in voting process. 
+One way could be to use Ripple public API’s   ‘Ledger Methods’. 
+
+ Ledger Methods provides a method called ‘ledger’ which can be called using webSocket/Json-rpc or command line. 
+ The response of this method call is as follows- 
+
+{
+
+  "id": 14,
+
+  "result": {
+
+    "ledger": {
+
+      "accepted": true,
+
+      "account_hash": "53BD4650A024E27DEB52DBB6A52EDB26528B987EC61C895C48D1EB44CEDD9AD3",
+
+      "close_flags": 0,
+
+      "close_time": 638329241,
+
+      "close_time_human": "2020-Mar-24 01:40:41.000000000 UTC",
+
+      "close_time_resolution": 10,
+
+      "closed": true,
+
+      "hash": "1723099E269C77C4BDE86C83FA6415D71CF20AA5CB4A94E5C388ED97123FB55B",
+
+      "ledger_hash": "1723099E269C77C4BDE86C83FA6415D71CF20AA5CB4A94E5C388ED97123FB55B",
+
+      "ledger_index": "54300932",
+
+      "parent_close_time": 638329240,
+
+      "parent_hash": "DF68B3BCABD31097634BABF0BDC87932D43D26E458BFEEFD36ADF2B3D94998C0",
+
+      "seqNum": "54300932",
+
+      "totalCoins": "99991024049648900",
+
+      "total_coins": "99991024049648900",
+
+      "transaction_hash": "50B3A8FE2C5620E43AA57564209AEDFEA3E868CFA2F6E4AB4B9E55A7A62AAF7B"
+
+    },
+
+    "ledger_hash": "1723099E269C77C4BDE86C83FA6415D71CF20AA5CB4A94E5C388ED97123FB55B",
+
+    "ledger_index": 54300932,
+
+    "validated": true
+
+  },
+
+  "status": "success",
+
+  "type": "response"
+
+}
+
+  
+
+Where following response items can be used, 
+
+ledger.parent_close_time	Integer        The time at which the previous ledger was closed.
+
+ledger.close_time	        Integer	The time this ledger was closed, in seconds since the Ripple Epoch
+
+
+So formula to calculate closure time for the ledger will be- 
+
+Latency = ( ledger.close_time  - ledger.parent_close_time ) in seconds. 
+
+
+
+
+
+
+
+
 
 
   
- 
+
+
+
+
  
  
 

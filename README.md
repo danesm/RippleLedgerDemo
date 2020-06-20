@@ -141,16 +141,16 @@ One way could be to use Ripple public API’s   ‘Ledger Methods’.
 
   
 
-Where following response items can be used, 
+Where following response fileds (integers) can be used, 
 
-ledger.parent_close_time	Integer        The time at which the previous ledger was closed.
+ledger.parent_close_time	-         The time at which the previous ledger was closed.
 
-ledger.close_time	        Integer	The time this ledger was closed, in seconds since the Ripple Epoch
+ledger.close_time	        -  The time this ledger was closed, in seconds since the Ripple Epoch
 
 
-So formula to calculate closure time for the ledger will be- 
+So ,
 
-Latency = ( ledger.close_time  - ledger.parent_close_time ) in seconds. 
+Time to close / validate Ledger =  ( ledger.close_time  - ledger.parent_close_time ) in seconds. 
 
 
 

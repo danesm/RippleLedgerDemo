@@ -63,7 +63,7 @@ There could be some variation in time between the ledgers as all peer uses NTP f
 Also network congetion could play role in delay in voting process. 
 
 
- #Additional questions : 
+ # Additional questions : 
 
 1: Enhance the script to calculate the min, max, and average time that it took for a new ledger to be validated during the span of time captured. 
 

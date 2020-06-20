@@ -31,11 +31,7 @@ Provide script/program that periodically calls rippled’s server_info command a
      4. Now run ./gnup.gnu (This will plot data.dat in a graph which will be poped up)
      
      
-     Note: This script is connecting to local instance of rippld server to collect server_info details. 
-           For quick test just can use existing data.dat file provided in repo.
-           And run ./gnup.gnu and it will plot the graph.  
-     
-     
+      Note: If you don't want to install rippled local instance. You may only run gnuplot script to generate graph as data.dat is provided in this repo.
  
    
    

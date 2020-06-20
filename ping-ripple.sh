@@ -12,7 +12,7 @@ echo -n "" > $outfile
 
 cd /etc/opt/ripple/
 
-for i in {1..20}; do
+for i in {1..30}; do
 
 rippled server_info | grep -e '"seq"' -e '"time"'  | awk '{print}' ORS='" ' | awk '{print $0,"\n"}' | less | sed -e 's/^[ \t]*//' >> $outfile
 

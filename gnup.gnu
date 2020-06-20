@@ -22,7 +22,7 @@ set datafile separator ','
 #set arrow 2 from A_index_max, graph 0.9 to A_index_max, A_max fill
 
 
-plot "data.dat" using 1:2 with lines title "Latest Validated Ledgers as of".strftime(" %b %d %Y", time(0))
+plot "data.dat" using 1:2 with lines title "Latest Validated Ledgers as of".strftime("%b %d %Y", time(0))
 
 
 exit

@@ -31,7 +31,40 @@ Provide script/program that periodically calls rippled’s server_info command a
      4. Now run ./gnup.gnu (This will plot data.dat in a graph which will be poped up)
      
      
-      Note: If you don't want to install rippled local instance. You may only run gnuplot script to generate graph as data.dat is provided in this repo.
+      Note: 1. If you don't want to install rippled local instance. You may only run gnuplot script to generate graph as data.dat is provided in this repo.
+      
+            2. If you are running your local rippled server then before running above scripts pls make sure to check rippled     server state is 'full' in this case. 
+              More info about server states at - https://xrpl.org/rippled-server-states.html
+              e.g. server_info method returns "server_state": "full" or respective value in response JSON object.
+      
  
+   # How did you decide on polling interval? 
    
+   
+   The XRP ledger's technology takes three to six seconds for settlement, near realtime. 
+   Poll interval of 1 second is taken so we can plot the graph in a way that we first see flat line until a new sequence is generated. There will be spike in curve for every new ledger sequence number against the current time. The smaller the flat line the less time it took for the XRP platform to validate the ledger and vice a versa.
+   
+ If poll interval is taken in mill seconds we get flat line graph as we are taking sample of 30 records only in this demo.
+ For this to work we need to increase the span of time to a lot longer (becaue XRP takes min 3-6 sec) so we have enough data to understand the graph. 
+ 
+ So better option was to use 1 sec interval for small span. It also helps as NTP possibly takes few mill seconds to synchronise participating computers in the network.
+ 
+ # What does the result tell us? 
+  
+  Every 1-4 seconds a new ledger is added. Occassionally it may be slightly higher than 6 seconds for few ledgers in consensus process. So there is clear variation in time between new ledgers. 
+  
+ 
+  # What might explain the variation in time between new ledgers? 
+  
+XRP Ledger enables peer-to-peer transaction settlement across a decentralized network of computers which participate in concensus process to validate the group of transactions. 
+ 
+There could be some variation in time between the ledgers due to NTP (Network Time Protocol)as every peer needs to  keep its  clock in sync with UTC and and sometimes these peers can be out of sync slightly & may cause minor delay in concensus. 
+Also network congetion could also contribute to delay in voting process. 
+
+
+  
+ 
+ 
+ 
+
    

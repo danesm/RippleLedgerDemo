@@ -10,7 +10,7 @@ Provide script/program that periodically calls rippled’s server_info command a
 
 # Solution Pre-requisites 
 
-   1. The scripts use Ripple's public instace s1.ripple.com, however it is tested with local instance of rippled too. 
+   1. The scripts use Ripple's public instace s1.ripple.com, however it is tested with local instance of rippled on ubuntu linux too. 
    
    2. You may also install Rippled server on any supported linux platform in order to execute rippled APIs locally. 
       Installation instructions-  https://xrpl.org/install-rippled.html

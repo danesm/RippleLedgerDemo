@@ -44,11 +44,9 @@ Provide script/program that periodically calls rippled’s server_info command a
    # How to decide on polling interval? 
    
 The XRP ledger's technology takes three to six seconds for settlement, near realtime. 
-Poll interval of 1-3 second is taken so we can plot the graph in a way that we first see flat line until a new sequence is    generated. There will be spike in curve for every new ledger sequence number against the current time. The smaller the flat line the less time it took for the XRP platform to validate the ledger and vice a versa.
-   
- If poll interval is taken in mill seconds (e.g. 0.1) we get flat line graph as we are taking sample of 30 records only in this demo. For this to work increase the span of time to a bit longer (becaue XRP takes min 3-6 sec) so that we have enough data to understand the graph. 
+Poll interval of 1 second is taken so we can plot the graph in a way that we first see flat line until a new sequence is    generated. There will be spike in curve for every new ledger sequence number against the current time. The smaller the flat line the less time it took for the XRP platform to validate the ledger and vice a versa.
+ Test was done on 1 sec interval with 20 sec of time span. And it gave clear understanding that it takes more than a second to validate the XRP ledger as we can see duplicate records coming. Duplicate seq number increases more with reduction of poll interval so 1 sec poll interval was used.    
  
- It is advisable to use 1 -3 sec poll interval and span of atleast 20 or more sec. 
  
  # What does the result tell? 
   

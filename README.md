@@ -10,9 +10,9 @@ Provide script/program that periodically calls rippled’s server_info command a
 
 # Solution Pre-requisites 
 
-   1. The scripts use Rippl's public instace s1.ripple.com, however it is tested with local instance of rippled too. 
+   1. The scripts use Ripple's public instace s1.ripple.com, however it is tested with local instance of rippled too. 
    
-   2. You may also install Rippld server on any supported linux platform in order to execute rippled APIs locally. 
+   2. You may also install Rippled server on any supported linux platform in order to execute rippled APIs locally. 
       Installation instructions-  https://xrpl.org/install-rippled.html
       
    2. Install gnuplot (a portable command-line driven graphing utility) and curl 
@@ -49,6 +49,7 @@ Poll interval of 1 second is taken so we can plot the graph in a way that we fir
 Test was done on poll interval range from 0.1 mill sec to 1 sec interval with 20 sec of time span. And it gave clear understanding that it takes more than a second to validate the XRP ledger as we can see duplicate records coming as we reduce the poll interval. i.e. Duplicate seq number increases more with reduction of poll interval so 1 sec poll interval was used to have a easy to read graph with interval in seconds.    
 
  Pls see attached example pdf file based on 1 sec poll interval for 20 sec span. 
+ However the provided script are dynamic enough to test with any interval and span parameter at run time. 
  
  # What does the result tell? 
   

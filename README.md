@@ -45,14 +45,15 @@ Provide script/program that periodically calls rippled’s server_info command a
    
 The XRP ledger's technology takes three to six seconds for settlement, near realtime. 
 Poll interval of 1 second is taken so we can plot the graph in a way that we first see flat line until a new sequence is    generated. There will be spike in curve for every new ledger sequence number against the current time. The smaller the flat line the less time it took for the XRP platform to validate the ledger and vice a versa.
- Test was done on 1 sec interval with 20 sec of time span. And it gave clear understanding that it takes more than a second to validate the XRP ledger as we can see duplicate records coming. Duplicate seq number increases more with reduction of poll interval so 1 sec poll interval was used.    
+ Test was done on 1 sec interval with 20 sec of time span. (see attached example pdf file) And it gave clear understanding that it takes more than a second to validate the XRP ledger as we can see duplicate records coming. Duplicate seq number increases more with reduction of poll interval so 1 sec poll interval was used.    
+
  
  
  # What does the result tell? 
   
-  Every 1-4 seconds a new ledger is added. Occassionally it may be slightly higher than 6 seconds for few ledgers in consensus process. So there is clear variation in time between new ledgers. 
-  
+  Every 1-4 seconds a new ledger is added. Occassionally it may be slightly higher than 3-4 seconds for few ledgers in consensus process. There is clear variation in time between new ledgers. 
  
+
   # What might explain the variation in time between new ledgers? 
   
 XRP Ledger enables peer-to-peer transaction settlement across a decentralized network of computers which participate in concensus process to validate the group of transactions. 

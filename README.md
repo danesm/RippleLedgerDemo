@@ -65,17 +65,16 @@ There could be some variation in time between the ledgers as all peer uses NTP f
 Also network congestion could play role in delay in voting process. 
 
 
- # Bonus questions : 
+ #  Challange : 
 
   1. Enhance the script to calculate the min, max, and average time that it took for a new ledger to be validated during the span of time captured. 
 
-Gnuplot stats can be used to calculate min, max and average.
+     Gnuplot stats can be used to calculate min, max and average.
 
 
 
 
-  2. There are some other (better) ways that you could use the rippled API to find how long each ledger took to close/validate. Using the API documentation, find and describe one of these methods (you don’t need to actually implement it).
-
+  2. There are some other (better) ways that you could use the rippled API to find how long each ledger took to close/validate. Using the API documentation, find and describe one of these methods. 
  
 One way could be to use Ripple public API’s ‘Ledger Methods’. 
 
